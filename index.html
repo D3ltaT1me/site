@@ -7,24 +7,43 @@
         <link rel="stylesheet" href="styles.css">
         <script src="script.js" defer></script>
         <script src="backgrund-btn.js" defer></script>
+        <script src="window.js" defer></script>
     </head>
     <body class="min-h-full flex flex-col bg-gray-100">
         <div class="container inset-0 overflow-hidden">
             <div class="absolute inset-0 overflow-hidden z-10 select-none">
                 <div class="absolute top-0 left-0 bottom-[90px] right-[90px]">
-                    <a draggable="false" data-drag="true" class="absolute text-sm flex flex-col items-center justify-center pointer-events-auto w-[90px] draggable" href="index.html" style="top: 32.0808%; left: 55.3137%; outline: none; z-index: 7;">
+                    <a draggable="false" data-drag="true" class="absolute text-sm flex flex-col items-center justify-center pointer-events-auto w-[90px] draggable openModal" data-target="modal1" style="top: 32.0808%; left: 55.3137%; outline: none; z-index: 7;">
                         <img draggable="false" src="placeholder.png" width="64" height="64" class="pointer-events-auto">
                         <span class="pointer-events-auto text-center">when the taper is low</span>
                     </a>
-                    <a draggable="false" data-drag="true" class="absolute text-sm flex flex-col items-center justify-center pointer-events-auto w-[90px] draggable" href="index.html" style="top: 52.0808%; left: 59.3137%; outline: none; z-index: 7;">
+                    <a draggable="false" data-drag="true" class="absolute text-sm flex flex-col items-center justify-center pointer-events-auto w-[90px] draggable openModal" data-target="modal2" style="top: 52.0808%; left: 59.3137%; outline: none; z-index: 7;">
                         <img draggable="false" src="placeholder.png" width="64" height="64" class="pointer-events-auto">
                         <span class="pointer-events-auto text-center">when the taper is low</span>
                     </a>
-                    <a draggable="false" data-drag="true" class="absolute text-sm flex flex-col items-center justify-center pointer-events-auto w-[90px] draggable" href="index.html" style="top: 45.0808%; left: 43.3137%; outline: none; z-index: 7;">
+                    <a draggable="false" data-drag="true" class="absolute text-sm flex flex-col items-center justify-center pointer-events-auto w-[90px] draggable openModal" data-target="modal3" style="top: 45.0808%; left: 43.3137%; outline: none; z-index: 7;">
                         <img draggable="false" src="low taper fade.jpg" width="64" height="64" class="pointer-events-auto">
                         <span class="pointer-events-auto text-center">when the taper is low</span>
                     </a>
                 </div>
+            </div>
+        </div>
+        <div id="modal1" class="translucent_black z-50">
+            <div class="absolute box-content">
+                <button class="closeModal" data-target="modal1">X</button>
+                <p>test1</p>
+            </div>
+        </div>
+        <div id="modal2" class="translucent_black z-50">
+            <div class="absolute box-content">
+                <button class="closeModal" data-target="modal2">X</button>
+                <p>test2</p>
+            </div>
+        </div>
+        <div id="modal3" class="translucent_black z-50">
+            <div class="absolute box-content">
+                <button class="closeModal" data-target="modal3">X</button>
+                <p>test3</p>
             </div>
         </div>
         <div class="fixed bottom-8 left-0 right-0 h-0 flex justify-center items-center z-30">
