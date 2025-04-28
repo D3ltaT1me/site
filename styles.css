@@ -165,3 +165,60 @@ audio, canvas, embed, iframe, img, object, svg, video {
     cursor: pointer;
     position: absolute;
 }
+div.box-content h2 {
+    margin-left: 20px;
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #000000;
+    text-align: left;
+}
+.modal_img {
+    margin-bottom: 20px;
+    max-width: 50%;
+    height: auto;
+    border-radius: 8px;
+}
+.image-text-container {
+    gap: 20px; /* space between image and text */
+    padding-right: 33px; /* space between image and text */
+}
+.audio-player {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background: #2e2d2d;
+    padding: 10px;
+    border-radius: 8px;
+    width: 193px;
+}
+audio {
+    display: none; /* hide default controls */
+}
+.progressBar {
+    flex: 2;
+    color: #f70000;
+}
+.timer {
+    width: 100px;
+    text-align: center;
+    font-family: monospace;
+    font-size: 14px;
+    color: #ffffff;
+}
+.playPause {
+    background: #000000;
+    color: white;
+    border: 1px solid transparent;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: monospace;
+}
+.playPause:hover {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ff0000;
+}
