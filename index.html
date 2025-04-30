@@ -19,7 +19,7 @@
                         <span class="pointer-events-auto text-center">when the taper is low</span>
                     </a>
                     <a draggable="false" data-drag="true" class="absolute text-sm flex flex-col items-center justify-center pointer-events-auto w-[90px] draggable openModal" data-target="modal2" style="top: 52.0808%; left: 59.3137%; outline: none; z-index: 7;">
-                        <img draggable="false" src="placeholder.png" width="64" height="64" class="pointer-events-auto">
+                        <img draggable="false" src="shake_hands_with_danger.png" width="64" height="64" class="pointer-events-auto">
                         <span class="pointer-events-auto text-center">supersonic speed</span>
                     </a>
                     <a draggable="false" data-drag="true" class="absolute text-sm flex flex-col items-center justify-center pointer-events-auto w-[90px] draggable openModal" data-target="modal3" style="top: 45.0808%; left: 43.3137%; outline: none; z-index: 7;">
@@ -38,7 +38,19 @@
         <div id="modal2" class="translucent_black z-50">
             <div class="absolute box-content">
                 <button class="closeModal" data-target="modal2">X</button>
-                <h2>237bpm</h2>
+                <div class="flex items-center image-text-container">
+                    <img src="shake_hands_with_danger.png" alt="Shake Hands With Danger" class="modal_img">
+                    <div>    
+                        <p>A bit of the weird one. I wrote the synth part in 3/4 but everything else is in 4/4 so it has this weird desync with everything else, but I think it gives it some character, especially since so many popular songs just follow a set formula.</p>
+                        <div class="audio-player" data-audio-player>
+                            <button class="playPause">Play</button>
+                            <span class="timer">0:00 / 2:18</span>
+                            <input type="range" class="progressBar" value="0" step="1">
+                            <audio src="sdaf.wav"></audio>
+                          </div>
+                    </div>
+                </div>
+                <h2>shake hands with danger</h2>
             </div>
         </div>
         <div id="modal3" class="translucent_black z-50">
