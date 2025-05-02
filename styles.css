@@ -176,7 +176,7 @@ div.box-content h2 {
 .modal_img {
     margin-bottom: 20px;
     max-width: 50%;
-    height: auto;
+    height: 256.5px;
     border-radius: 8px;
 }
 .image-text-container {
@@ -222,4 +222,9 @@ audio {
     border-width: 1px;
     border-style: solid;
     border-color: #ff0000;
+}
+.modalText {
+    height: 120px;          
+    overflow-y: auto;         
+    padding-right: 10px;       
 }
