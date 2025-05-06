@@ -2,7 +2,7 @@ function formatTime(seconds) {
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-  }
+}
   
 document.querySelectorAll('[data-audio-player]').forEach(player => {
     const audio = player.querySelector('audio');
@@ -43,6 +43,17 @@ document.querySelectorAll('[data-audio-player]').forEach(player => {
     });
 
     document.querySelectorAll('.translucent_black').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          document.querySelectorAll('audio').forEach(otherAudio => {
+              otherAudio.pause();
+              otherAudio.closest('.audio-player').querySelector('.playPause').textContent = 'Play';
+          });
+        }
+      });
+    });
+
+    document.querySelectorAll('.closeModal').forEach(overlay => {
       overlay.addEventListener('click', (e) => {
         if (e.target === overlay) {
           document.querySelectorAll('audio').forEach(otherAudio => {

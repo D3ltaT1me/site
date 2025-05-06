@@ -228,3 +228,35 @@ audio {
     overflow-y: auto;         
     padding-right: 10px;       
 }
+.songlessmodalText {
+    height: 250px;          
+    overflow-y: auto;         
+    padding-right: 10px;       
+}
+.linkd {
+    color: #000000;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: monospace;
+}
+.linkd:hover {
+    color: #ff0000;
+    text-decoration: underline;
+}
+.gold-glow {
+    animation: glow 2s infinite ease-in-out;
+    box-shadow: 0 0 10px gold;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 0px gold, 0 0 0px gold;
+    }
+    50% {
+      box-shadow: 0 0 15px gold, 0 0 30px gold;
+    }
+    100% {
+      box-shadow: 0 0 0px gold, 0 0 0px gold;
+    }
+  }
