@@ -1,76 +1,99 @@
-// Make the DIV element draggable:
 document.querySelectorAll('.draggable').forEach(el => {
     dragElement(el);
-});
-
-function dragElement(elmnt) {
-    // console.log(elmnt);
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  });
+  
+  function dragElement(elmnt) {
     let isDragging = false;
-    // otherwise, move the DIV from anywhere inside the DIV:
-    elmnt.onmousedown = dragMouseDown;
-    // console.log("work");
+    let shiftX = 0;
+    let shiftY = 0;
 
-
+    const id = elmnt.id;
+    if (id) loadPosition();
+  
+    elmnt.addEventListener('mousedown', dragMouseDown);
+    elmnt.addEventListener('touchstart', dragMouseDown, { passive: false });
+  
     function dragMouseDown(e) {
-        e.preventDefault();
-        isDragging = false; // reset
-        // get the mouse cursor position at startup:
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
+      e.preventDefault();
+      isDragging = false;
+  
+      const isTouch = e.type === 'touchstart';
+      const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+      const clientY = isTouch ? e.touches[0].clientY : e.clientY;
+  
+      const rect = elmnt.getBoundingClientRect();
+      shiftX = clientX - rect.left;
+      shiftY = clientY - rect.top;
+  
+      if (isTouch) {
+        document.addEventListener('touchmove', elementDrag, { passive: false });
+        document.addEventListener('touchend', closeDragElement);
+      } else {
+        document.addEventListener('mousemove', elementDrag);
+        document.addEventListener('mouseup', closeDragElement);
+      }
     }
-
+  
     function elementDrag(e) {
-        e.preventDefault();
-        isDragging = true; // mark that we are dragging
-        // calculate the new cursor position:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
+      e.preventDefault();
+      isDragging = true;
+  
+      const isTouch = e.type === 'touchmove';
+      const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+      const clientY = isTouch ? e.touches[0].clientY : e.clientY;
+  
+      const elementWidth = elmnt.offsetWidth;
+      const elementHeight = elmnt.offsetHeight;
+  
+      const rawX = clientX - shiftX;
+      const rawY = clientY - shiftY;
+  
+      const clampedX = Math.max(0, Math.min(rawX, elmnt.offsetParent.clientWidth - elementWidth));
+      const clampedY = Math.max(0, Math.min(rawY, elmnt.offsetParent.clientHeight - elementHeight));
+  
+      const percentX = (clampedX / elmnt.offsetParent.clientWidth) * 100;
+      const percentY = (clampedY / elmnt.offsetParent.clientHeight) * 100;
+  
+      elmnt.style.left = `${percentX}%`;
+      elmnt.style.top = `${percentY}%`;
 
-        // Calculate new positions
-        let newTop = elmnt.offsetTop - pos2;
-        let newLeft = elmnt.offsetLeft - pos1;
-
-        // Clamp so it stays in bounds
-        const containerWidth = window.innerWidth;
-        const containerHeight = window.innerHeight;
-        const elWidth = elmnt.offsetWidth;
-        const elHeight = elmnt.offsetHeight;
-
-        // Clamp left/right
-        newLeft = Math.max(0, Math.min(containerWidth - elWidth, newLeft));
-        // Clamp top/bottom
-        newTop = Math.max(0, Math.min(containerHeight - elHeight, newTop));
-
-        // set the element's new position:
-        elmnt.style.top = newTop + "px";
-        elmnt.style.left = newLeft + "px";
+      if (id) savePosition(percentX, percentY);
     }
-
+  
     function closeDragElement(e) {
-        // stop moving when mouse button is released:
-        document.onmouseup = null;
-        document.onmousemove = null;
-
-        if (isDragging) {
-            e.preventDefault();
-            e.stopPropagation();
-            // console.log("dragging");
-            setTimeout(() => { isDragging = false; }, 0); // reset after event loop
-        }
+      document.removeEventListener('mousemove', elementDrag);
+      document.removeEventListener('mouseup', closeDragElement);
+      document.removeEventListener('touchmove', elementDrag);
+      document.removeEventListener('touchend', closeDragElement);
+  
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+        setTimeout(() => { isDragging = false; }, 0);
+      }
     }
 
-    // Block accidental click if it was a drag
-    elmnt.addEventListener('click', function(e) {
-        if (isDragging) {
-            e.preventDefault();
-            e.stopImmediatePropagation(); // just to be sure
-            // console.log("Click prevented due to drag");
+    function savePosition(left, top) {
+        const positions = JSON.parse(localStorage.getItem('draggablePositions')) || {};
+        positions[id] = { left, top };
+        localStorage.setItem('draggablePositions', JSON.stringify(positions));
+    }
+
+    function loadPosition() {
+        const positions = JSON.parse(localStorage.getItem('draggablePositions')) || {};
+        if (positions[id]) {
+          elmnt.style.left = `${positions[id].left}%`;
+          elmnt.style.top = `${positions[id].top}%`;
         }
+    }
+    
+  
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      }
     });
+
+    elmnt.ondragstart = () => false;
 }

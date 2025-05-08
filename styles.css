@@ -41,6 +41,12 @@ body {
 .left-0 {
     left: 0;
 }
+.right-0 {
+    right: 0;
+}
+.bottom-0 {
+    bottom: 0;
+}
 .bottom-\[90px\] {
     bottom: 90px;
 }
@@ -243,7 +249,7 @@ audio {
     color: #ff0000;
     text-decoration: underline;
 }
-.gold-glow {
+img:hover{
     animation: glow 2s infinite ease-in-out;
     box-shadow: 0 0 10px gold;
     transition: box-shadow 0.3s ease;
@@ -254,9 +260,12 @@ audio {
       box-shadow: 0 0 0px gold, 0 0 0px gold;
     }
     50% {
-      box-shadow: 0 0 15px gold, 0 0 30px gold;
+      box-shadow: 0 0 20px gold, 0 0 20px gold;
     }
     100% {
       box-shadow: 0 0 0px gold, 0 0 0px gold;
     }
   }
+.stroke-1p-black {
+    -webkit-text-stroke: 1px black;
+}
